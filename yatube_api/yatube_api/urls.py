@@ -10,6 +10,4 @@ urlpatterns = [
         TemplateView.as_view(template_name='redoc.html'),
         name='redoc'
     ),
-    # path('', include('djoser.urls')),
-    # path('', include('djoser.urls.jwt')),
 ]
