@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import filters, viewsets
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 
 from api.permissions import IsAdminOnly, IsAuthorOrReadOnly
 from api.serializers import (
@@ -42,7 +42,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 class FollowViewSet(viewsets.ModelViewSet):
     queryset = Follow.objects.all()
     serializer_class = FollowSerializer
-    # permission_classes = (FollowPermission, )
+    permission_classes = (IsAuthenticated, )
     filter_backends = [filters.SearchFilter]
     search_fields = ['user__username', 'following__username']
 
