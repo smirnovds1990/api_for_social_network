@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import filters, viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (
+    IsAuthenticated, IsAuthenticatedOrReadOnly
+)
 
-from api.permissions import IsAdminOnly, IsAuthorOrReadOnly
+from api.permissions import IsAuthorOrReadOnly
 from api.serializers import (
     CommentSerializer, FollowSerializer, GroupSerializer, PostSerializer
 )
@@ -18,10 +20,10 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = (IsAdminOnly, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
 
 class CommentViewSet(viewsets.ModelViewSet):

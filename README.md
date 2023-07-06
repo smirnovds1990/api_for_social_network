@@ -43,3 +43,5 @@ Payload:
 ```
 * * *
 Полная документация доступна на `http://127.0.0.1:8000/redoc/` после запуска проекта.
+* * *
+Автор проекта: https://github.com/smirnovds1990?tab=repositories
